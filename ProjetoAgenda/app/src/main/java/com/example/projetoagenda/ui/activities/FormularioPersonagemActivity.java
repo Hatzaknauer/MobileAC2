@@ -2,29 +2,19 @@ package com.example.projetoagenda.ui.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.projetoagenda.R;
-import com.example.projetoagenda.PersonagemDAO;
+import com.example.projetoagenda.dao.PersonagemDAO;
 import com.example.projetoagenda.model.Personagem;
-import com.github.rtoshiro.util.format.MaskFormatter;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
-import com.github.rtoshiro.util.format.pattern.MaskPattern;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
-import static android.media.MediaRecorder.VideoSource.CAMERA;
 import static com.example.projetoagenda.ui.activities.ConstatesActivities.CHAVE_PERSONAGEM;
 
 public class FormularioPersonagemActivity extends AppCompatActivity {

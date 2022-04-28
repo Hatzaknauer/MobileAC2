@@ -1,4 +1,4 @@
-package com.example.projetoagenda;
+package com.example.projetoagenda.dao;
 
 import com.example.projetoagenda.model.Personagem;
 

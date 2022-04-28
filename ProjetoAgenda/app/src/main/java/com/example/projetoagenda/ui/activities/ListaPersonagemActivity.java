@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.projetoagenda.PersonagemDAO;
+import com.example.projetoagenda.dao.PersonagemDAO;
 import com.example.projetoagenda.R;
 import com.example.projetoagenda.model.Personagem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
