@@ -18,20 +18,24 @@ import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import static com.example.projetoagenda.ui.activities.ConstatesActivities.CHAVE_PERSONAGEM;
 
 public class FormularioPersonagemActivity extends AppCompatActivity {
+    //Variáveis que serão utilizadas para alterar os textos do layout diretamente pela classe
     private static final String TITULO_APPBAR_EDITA_PERSONAGEM = "Editar o Personagem";
     private static final String TITULO_APPBAR_NOVO_PERSONAGEM = "Novo Personagem";
+
     private EditText campoNome;
     private EditText campoNascimento;
     private EditText campoAltura;
     private final PersonagemDAO dao = new PersonagemDAO();
     private Personagem personagem;
 
+    //Informa o que será aberto ao criar, no caso, menu, sobrescrevendo o método
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_formulario_personagem_menu_salvar, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
+    //Informa o que acontecerá quando o botão for clicado
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         int itemId = item.getItemId();
@@ -41,6 +45,7 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Recebe o layout que será utilizado na classe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -49,26 +54,32 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         inicializacaoCampos();
         //configuraBotaoSalvar();
         carregaPersonagem();
-        checaPermissoes();
     }
 
+    //Metodo cujo tem a intenção de coletar dados
     private void carregaPersonagem() {
         Intent dados = getIntent();
+        //Caso contenha dados, os recebe
         if (dados.hasExtra(CHAVE_PERSONAGEM)) {
             setTitle(TITULO_APPBAR_EDITA_PERSONAGEM);
             personagem = (Personagem) dados.getSerializableExtra(CHAVE_PERSONAGEM);
-            preenchaCampos();
-        } else {
+            preencheCampos();
+        }
+        //Caso não tenha dados, traz método para inserir novo personagem
+        else {
             setTitle(TITULO_APPBAR_NOVO_PERSONAGEM);
             personagem = new Personagem();
         }
     }
-    private void preenchaCampos() {
+
+    //
+    private void preencheCampos() {
         campoNome.setText(personagem.getNome());
         campoAltura.setText(personagem.getAltura());
         campoNascimento.setText(personagem.getNascimento());
     }
 
+    //
     private void finalizarFormulario()
     {
         preencherPersonagem();
@@ -81,6 +92,7 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         finish();
     }
 
+    //
     private void inicializacaoCampos() {
         campoNome = findViewById(R.id.editText_nome);
         campoNascimento = findViewById(R.id.editText_nascimento);
@@ -90,11 +102,12 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         MaskTextWatcher mtwAltura = new MaskTextWatcher(campoAltura, smfAltura);
         campoAltura.addTextChangedListener(mtwAltura);
 
-        SimpleMaskFormatter smfNascimento = new SimpleMaskFormatter("N,NN");
+        SimpleMaskFormatter smfNascimento = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher mtwNascimento = new MaskTextWatcher(campoNascimento, smfNascimento);
-        campoAltura.addTextChangedListener(mtwNascimento);
+        campoNascimento.addTextChangedListener(mtwNascimento);
     }
 
+    //
     private void preencherPersonagem() {
         String nome = campoNome.getText().toString();
         String nascimento = campoNascimento.getText().toString();
