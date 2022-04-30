@@ -57,7 +57,7 @@ import static com.example.projetoagenda.ui.activities.ConstatesActivities.CHAVE_
         });
     }
 
-    //
+    //Método para abrir o formulário carregando a classe
     private void abreFormulario() {
         startActivity(new Intent(this, FormularioPersonagemActivity.class));
     }

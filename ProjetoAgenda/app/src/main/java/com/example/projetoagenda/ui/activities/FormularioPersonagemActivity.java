@@ -21,17 +21,21 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     //Variáveis que serão utilizadas para alterar os textos do layout diretamente pela classe
     private static final String TITULO_APPBAR_EDITA_PERSONAGEM = "Editar o Personagem";
     private static final String TITULO_APPBAR_NOVO_PERSONAGEM = "Novo Personagem";
-
+    //Variáveis que receberão os valores dos campos presentes na tela
     private EditText campoNome;
     private EditText campoNascimento;
     private EditText campoAltura;
+
     private final PersonagemDAO dao = new PersonagemDAO();
     private Personagem personagem;
 
     //Informa o que será aberto ao criar, no caso, menu, sobrescrevendo o método
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        //Exibe um novo menu flutuante na tela
         getMenuInflater().inflate(R.menu.activity_formulario_personagem_menu_salvar, menu);
+        
         return super.onCreateOptionsMenu(menu);
     }
 
