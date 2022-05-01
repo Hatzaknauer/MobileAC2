@@ -4,12 +4,16 @@ import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
-public class Personagem implements Serializable {
+//Criação da classe implementando itens da Interface
+public class Personagem implements Serializable
+{
+    //Variáveis para construção do personagem
     private String nome;
     private String nascimento;
     private String altura;
     private int id = 0;
 
+    //Objeto personagem com suas informações
     public Personagem(String nome, String nascimento, String altura) {
         this.nome = nome;
         this.nascimento = nascimento;
@@ -43,6 +47,7 @@ public class Personagem implements Serializable {
 
     @NonNull
     @Override
+    //Declaração dos valores da classe
     public String toString() {
         return nome;
     }

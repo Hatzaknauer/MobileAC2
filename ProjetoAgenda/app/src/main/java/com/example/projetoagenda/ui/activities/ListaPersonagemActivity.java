@@ -62,22 +62,30 @@ import static com.example.projetoagenda.ui.activities.ConstatesActivities.CHAVE_
         startActivity(new Intent(this, FormularioPersonagemActivity.class));
     }
 
-    //
+    //Método para quando a tela é iniciada
     @Override
     protected void onResume() {
+        //Tela atualizada
         super.onResume();
+        //Atualiza lista de personagens para exibição
         atualizaPersonagem();
     }
 
-    //
-    private void atualizaPersonagem() {
+    //Método para atualizar a lista de personagem
+    private void atualizaPersonagem()
+    {
+        //Remove todos os itens
         adapter.clear();
+        //Adiciona todos os itens (já atualizado)
         adapter.addAll(dao.todos());
     }
 
-    //
-    private void remove(Personagem personagem){
+    //Método para remover personagem da lista
+    private void remove(Personagem personagem)
+    {
+        //Remove personagem na classe
         dao.remove(personagem);
+        //Remove na lista
         adapter.remove(personagem);
     }
 
@@ -89,9 +97,11 @@ import static com.example.projetoagenda.ui.activities.ConstatesActivities.CHAVE_
         getMenuInflater().inflate(R.menu.activity_lista_personagem_menu, menu);
     }
 
-    //
+    //Método que invoca o item selecionado para dar popup no menu
     @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
+    public boolean onContextItemSelected(@NonNull MenuItem item)
+    {
+        //Encontra id do item
         int itemId = item.getItemId();
         if (itemId == R.id.activity_lista_personagem_menu_remover){
             //Instancia alerta de segurança para não ocorrer remoções acidentais
@@ -118,8 +128,9 @@ import static com.example.projetoagenda.ui.activities.ConstatesActivities.CHAVE_
         return super.onContextItemSelected(item);
     }
 
-    //
-    private void configuraLista(){
+    //Configura personagens da lista para serem utilizáveis
+    private void configuraLista()
+    {
         ListView listaDePersonagens = findViewById(R.id.activity_main_lista_personagem);
         configuraAdapter(listaDePersonagens);
         configuraItemPorClique(listaDePersonagens);
@@ -150,7 +161,7 @@ import static com.example.projetoagenda.ui.activities.ConstatesActivities.CHAVE_
         startActivity(vaiParaFormulario);
     }
 
-    //
+    //Método para adaptar a lista com base no ListView
     private void configuraAdapter(ListView listaDePersonagens){
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         listaDePersonagens.setAdapter(adapter);

@@ -76,42 +76,51 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         }
     }
 
-    //
+    //Transfere a informação dos campos preenchidos para exibir os campos no personagem
     private void preencheCampos() {
         campoNome.setText(personagem.getNome());
         campoAltura.setText(personagem.getAltura());
         campoNascimento.setText(personagem.getNascimento());
     }
 
-    //
+    //Método utilizado ao confirmar a adição do personagem
     private void finalizarFormulario()
     {
+        //Adiciona informações
         preencherPersonagem();
-        if (personagem.IdValido()) {
+        //Verifica o id pelo método
+        if (personagem.IdValido())
+        {
             dao.edita(personagem);
             finish();
-        } else {
+        } else
+        {
             dao.salva(personagem);
         }
+        //finaliza tela
         finish();
     }
 
-    //
-    private void inicializacaoCampos() {
+    //Método para alocar os itens do XML nos itens da classe
+    private void inicializacaoCampos()
+    {
+        //Encontra os XML para alocar nos campos
         campoNome = findViewById(R.id.editText_nome);
         campoNascimento = findViewById(R.id.editText_nascimento);
         campoAltura = findViewById(R.id.editText_altura);
 
+        //Formatação utilizando script importado pelo github
         SimpleMaskFormatter smfAltura = new SimpleMaskFormatter("N,NN");
         MaskTextWatcher mtwAltura = new MaskTextWatcher(campoAltura, smfAltura);
         campoAltura.addTextChangedListener(mtwAltura);
 
+        //Formatação utilizando script importado pelo github
         SimpleMaskFormatter smfNascimento = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher mtwNascimento = new MaskTextWatcher(campoNascimento, smfNascimento);
         campoNascimento.addTextChangedListener(mtwNascimento);
     }
 
-    //
+    //Preenche as informações recebidas pelo formulário para a classe personagem
     private void preencherPersonagem() {
         String nome = campoNome.getText().toString();
         String nascimento = campoNascimento.getText().toString();
